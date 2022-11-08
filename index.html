@@ -397,7 +397,7 @@
         * Update the game status to started.
         */
         startGame: function () {
-          
+          this.playSound2(this.soundFx.BGMUSIC);
           this.runningTime = 0;
           this.playingIntro = false;
           this.tRex.playingIntro = false;
@@ -589,7 +589,7 @@
         */
         isRunning: function () {
 
-          this.playSound(this.soundFx.BGMUSIC);
+          
           return !!this.raqId;
         },
         /**
@@ -672,6 +672,16 @@
             sourceNode.buffer = soundBuffer;
             sourceNode.connect(this.audioContext.destination);
             sourceNode.start(0);
+          }
+        },
+        
+        playSound2: function (soundBuffer) {
+          if (soundBuffer) {
+            var sourceNode = this.audioContext.createBufferSource();
+            sourceNode.buffer = soundBuffer;
+            sourceNode.connect(this.audioContext.destination);
+            sourceNode.start(0);
+            sourceNode.loop=true;
           }
         }
       };
