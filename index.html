@@ -397,6 +397,7 @@
         * Update the game status to started.
         */
         startGame: function () {
+          var loopsound;
           this.playSound2(this.soundFx.BGMUSIC);
           this.runningTime = 0;
           this.playingIntro = false;
@@ -451,6 +452,7 @@
                 this.currentSpeed += this.config.ACCELERATION;
               }
             } else {
+              
               this.gameOver();
             }
             if (this.distanceMeter.getActualDistance(this.distanceRan) >
@@ -597,6 +599,7 @@
         */
         gameOver: function () {
           this.playSound(this.soundFx.HIT);
+          this.audioContext.close();
           vibrate(200);
           this.stop();
           this.crashed = true;
@@ -616,6 +619,7 @@
             this.distanceMeter.setHighScore(this.highestScore);
           }
           // Reset the time clock.
+          
           this.time = getTimeStamp();
         },
         stop: function () {
@@ -623,6 +627,8 @@
           this.paused = true;
           cancelAnimationFrame(this.raqId);
           this.raqId = 0;
+
+          
         },
         play: function () {
           if (!this.crashed) {
@@ -634,24 +640,24 @@
             this.update();
           }
         },
-        restart: function () {
-          if (!this.raqId) {
-            this.playCount++;
-            this.runningTime = 0;
-            this.activated = true;
-            this.crashed = false;
-            this.distanceRan = 0;
-            this.setSpeed(this.config.SPEED);
-            this.time = getTimeStamp();
-            this.containerEl.classList.remove(Runner.classes.CRASHED);
-            this.clearCanvas();
-            this.distanceMeter.reset(this.highestScore);
-            this.horizon.reset();
-            this.tRex.reset();
-            this.playSound(this.soundFx.BUTTON_PRESS);
-            this.update();
-          }
-        },
+        // restart: function () {
+        //   if (!this.raqId) {
+        //     this.playCount++;
+        //     this.runningTime = 0;
+        //     this.activated = true;
+        //     this.crashed = false;
+        //     this.distanceRan = 0;
+        //     this.setSpeed(this.config.SPEED);
+        //     this.time = getTimeStamp();
+        //     this.containerEl.classList.remove(Runner.classes.CRASHED);
+        //     this.clearCanvas();
+        //     this.distanceMeter.reset(this.highestScore);
+        //     this.horizon.reset();
+        //     this.tRex.reset();
+        //     this.playSound(this.soundFx.BUTTON_PRESS);
+        //     this.update();
+        //   }
+        // },
         /**
         * Pause the game if the tab is not in focus.
         */
@@ -674,16 +680,18 @@
             sourceNode.start(0);
           }
         },
-        
-        playSound2: function (soundBuffer) {
+        playSound2: function (soundBuffer, endsound) {
           if (soundBuffer) {
             var sourceNode = this.audioContext.createBufferSource();
             sourceNode.buffer = soundBuffer;
             sourceNode.connect(this.audioContext.destination);
             sourceNode.start(0);
-            sourceNode.loop=true;
+            sourceNode.loop =  true;
           }
+
+        
         }
+        
       };
       /**
       * Updates the canvas size taking into

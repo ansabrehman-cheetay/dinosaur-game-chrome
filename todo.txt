@@ -1,0 +1,9 @@
+1) logo replace
+2) sound lower(bg)
+3) correct sound delay(looping sound)
+4) can we add coins instead of clouds?(can remmove using ln 1890, 
+same logic as obstacle avoidance)
+5) remove hi score
+6) commented code for restart game
+7) remove restart icon
+8) remove dots beside run cheetay run
