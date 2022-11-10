@@ -7,3 +7,7 @@ same logic as obstacle avoidance)
 6) commented code for restart game
 7) remove restart icon
 8) remove dots beside run cheetay run
+9) landscape mode(no logo), get styling done
+10) screen recording of final version
+
+/home/mahnoor/dinosaur-game-chrome/index.html
