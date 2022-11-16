@@ -11,3 +11,5 @@ same logic as obstacle avoidance)
 10) screen recording of final version
 
 /home/mahnoor/dinosaur-game-chrome/index.html
+
+/home/mahnoor/dinosaur-game-chrome/index.html
